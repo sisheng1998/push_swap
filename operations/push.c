@@ -6,7 +6,7 @@
 /*   By: siooi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 17:34:00 by siooi             #+#    #+#             */
-/*   Updated: 2026/09/20 17:55:24 by siooi            ###   ########.fr       */
+/*   Updated: 2026/09/27 12:56:56 by siooi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,20 @@ static void	push(t_list **from, t_list **to)
 	*to = tmp;
 }
 
-void	pa(t_stacks *stacks, int record, int print)
+void	pa(t_stacks *stacks, int print)
 {
 	push(&stacks->b, &stacks->a);
 	if (print)
 		ft_putendl_fd("pa", 1);
-	if (record)
-	{
-		stacks->operations.pa++;
-		stacks->operations.total++;
-	}
+	stacks->operations.pa++;
+	stacks->operations.total++;
 }
 
-void	pb(t_stacks *stacks, int record, int print)
+void	pb(t_stacks *stacks, int print)
 {
 	push(&stacks->a, &stacks->b);
 	if (print)
 		ft_putendl_fd("pb", 1);
-	if (record)
-	{
-		stacks->operations.pb++;
-		stacks->operations.total++;
-	}
+	stacks->operations.pb++;
+	stacks->operations.total++;
 }

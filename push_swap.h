@@ -6,7 +6,7 @@
 /*   By: siooi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 12:13:44 by siooi             #+#    #+#             */
-/*   Updated: 2026/09/20 19:04:49 by siooi            ###   ########.fr       */
+/*   Updated: 2026/09/27 19:04:29 by siooi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,18 +73,38 @@ void	assign_index(t_list *stack);
 void	free_args(char **args);
 void	free_stacks(t_stacks *stacks);
 
+// Algorithms
+void	sort_stacks(t_stacks *stacks, t_flags flags, int print);
+int		is_sorted(t_list *stack);
+void	fixed_sort(t_stacks *stacks, int print);
+void	sort_three(t_stacks *stacks, int print);
+t_list	*get_smaller_target(t_list *stack, int target_index);
+t_list	*get_larger_target(t_list *stack, int target_index);
+int		get_target_position(t_list *stack, t_list *target);
+t_list	*get_min_node(t_list *stack);
+
+// Algorithms - Simple
+void	insertion_sort(t_stacks *stacks, int print);
+int		get_rotation_cost(t_list *stack, t_list *target);
+int		get_total_cost(t_list *stack, t_list *target_stack,
+			t_list *current, t_list *target);
+t_list	*get_cheapest_a_to_b(t_stacks *stacks);
+t_list	*get_cheapest_b_to_a(t_stacks *stacks);
+void	rotate_for_push_b(t_stacks *stacks, t_list *cheapest, int print);
+void	rotate_for_push_a(t_stacks *stacks, t_list *cheapest, int print);
+
 // Operations
-void	sa(t_stacks *stacks, int record, int print);
-void	sb(t_stacks *stacks, int record, int print);
-void	ss(t_stacks *stacks, int record, int print);
-void	pa(t_stacks *stacks, int record, int print);
-void	pb(t_stacks *stacks, int record, int print);
-void	ra(t_stacks *stacks, int record, int print);
-void	rb(t_stacks *stacks, int record, int print);
-void	rr(t_stacks *stacks, int record, int print);
-void	rra(t_stacks *stacks, int record, int print);
-void	rrb(t_stacks *stacks, int record, int print);
-void	rrr(t_stacks *stacks, int record, int print);
+void	sa(t_stacks *stacks, int print);
+void	sb(t_stacks *stacks, int print);
+void	ss(t_stacks *stacks, int print);
+void	pa(t_stacks *stacks, int print);
+void	pb(t_stacks *stacks, int print);
+void	ra(t_stacks *stacks, int print);
+void	rb(t_stacks *stacks, int print);
+void	rr(t_stacks *stacks, int print);
+void	rra(t_stacks *stacks, int print);
+void	rrb(t_stacks *stacks, int print);
+void	rrr(t_stacks *stacks, int print);
 
 // Libft Functions
 long	ft_atol(const char *nptr);
@@ -93,6 +113,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstiter(t_list *lst, void (*f)(int, int));
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(int value);
+int		ft_lstsize(t_list *lst);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putstr_fd(char *s, int fd);
 char	**ft_split(char const *s, char c);

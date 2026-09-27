@@ -6,7 +6,7 @@
 #    By: siooi <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/19 15:20:12 by siooi             #+#    #+#              #
-#    Updated: 2026/09/20 19:03:59 by siooi            ###   ########.fr        #
+#    Updated: 2026/09/27 18:27:52 by siooi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,32 +20,45 @@ RM	= rm -f
 
 MAIN	= main
 
-INPUT	= input/flags \
-	  input/parse \
-	  input/check \
-	  input/stacks \
-	  input/index
+ALGORITHMS	= $(addprefix algorithms/, \
+		sort \
+		sort_utils \
+		fixed_sort \
+		simple \
+		simple_utils \
+		simple_cost \
+		simple_rotation)
 
-OPERATIONS	= operations/swap \
-		  operations/push \
-		  operations/rotate \
-		  operations/reverse_rotate
+INPUT	= $(addprefix input/, \
+		flags \
+		parse \
+		check \
+		stacks \
+		index)
 
-LIBFT	= libft/ft_atol \
-	  libft/ft_isdigit \
-	  libft/ft_lstadd_back \
-	  libft/ft_lstiter \
-	  libft/ft_lstlast \
-	  libft/ft_lstnew \
-	  libft/ft_putendl_fd \
-	  libft/ft_putstr_fd \
-	  libft/ft_split \
-	  libft/ft_strcmp \
-	  libft/ft_strdup \
-	  libft/ft_strjoin \
-	  libft/ft_strlen
+OPERATIONS	= $(addprefix operations/, \
+		swap \
+		push \
+		rotate \
+		reverse_rotate)
 
-SRCS	= $(addsuffix .c, $(MAIN) $(INPUT) $(OPERATIONS) $(LIBFT))
+LIBFT	= $(addprefix libft/, \
+		ft_atol \
+		ft_isdigit \
+	  	ft_lstadd_back \
+	  	ft_lstiter \
+	  	ft_lstlast \
+	  	ft_lstnew \
+	  	ft_lstsize \
+	  	ft_putendl_fd \
+	  	ft_putstr_fd \
+	  	ft_split \
+	  	ft_strcmp \
+	  	ft_strdup \
+	  	ft_strjoin \
+	  	ft_strlen)
+
+SRCS	= $(addsuffix .c, $(MAIN) $(ALGORITHMS) $(INPUT) $(OPERATIONS) $(LIBFT))
 OBJS	= $(SRCS:.c=.o)
 
 %.o	: %.c $(HEADER)

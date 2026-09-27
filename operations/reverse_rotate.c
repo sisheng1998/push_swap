@@ -6,7 +6,7 @@
 /*   By: siooi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 16:16:11 by siooi             #+#    #+#             */
-/*   Updated: 2026/09/20 19:32:47 by siooi            ###   ########.fr       */
+/*   Updated: 2026/09/27 10:32:38 by siooi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,39 +35,30 @@ static void	reverse_rotate(t_list **stack)
 	*stack = last;
 }
 
-void	rra(t_stacks *stacks, int record, int print)
+void	rra(t_stacks *stacks, int print)
 {
 	reverse_rotate(&stacks->a);
 	if (print)
 		ft_putendl_fd("rra", 1);
-	if (record)
-	{
-		stacks->operations.rra++;
-		stacks->operations.total++;
-	}
+	stacks->operations.rra++;
+	stacks->operations.total++;
 }
 
-void	rrb(t_stacks *stacks, int record, int print)
+void	rrb(t_stacks *stacks, int print)
 {
 	reverse_rotate(&stacks->b);
 	if (print)
 		ft_putendl_fd("rrb", 1);
-	if (record)
-	{
-		stacks->operations.rrb++;
-		stacks->operations.total++;
-	}
+	stacks->operations.rrb++;
+	stacks->operations.total++;
 }
 
-void	rrr(t_stacks *stacks, int record, int print)
+void	rrr(t_stacks *stacks, int print)
 {
-	rra(stacks, 0, 0);
-	rrb(stacks, 0, 0);
+	reverse_rotate(&stacks->a);
+	reverse_rotate(&stacks->b);
 	if (print)
 		ft_putendl_fd("rrr", 1);
-	if (record)
-	{
-		stacks->operations.rrr++;
-		stacks->operations.total++;
-	}
+	stacks->operations.rrr++;
+	stacks->operations.total++;
 }

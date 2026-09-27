@@ -6,7 +6,7 @@
 /*   By: siooi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 16:16:11 by siooi             #+#    #+#             */
-/*   Updated: 2026/09/20 18:53:15 by siooi            ###   ########.fr       */
+/*   Updated: 2026/09/27 10:28:29 by siooi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,39 +26,30 @@ static void	rotate(t_list **stack)
 	last->next = first;
 }
 
-void	ra(t_stacks *stacks, int record, int print)
+void	ra(t_stacks *stacks, int print)
 {
 	rotate(&stacks->a);
 	if (print)
 		ft_putendl_fd("ra", 1);
-	if (record)
-	{
-		stacks->operations.ra++;
-		stacks->operations.total++;
-	}
+	stacks->operations.ra++;
+	stacks->operations.total++;
 }
 
-void	rb(t_stacks *stacks, int record, int print)
+void	rb(t_stacks *stacks, int print)
 {
 	rotate(&stacks->b);
 	if (print)
 		ft_putendl_fd("rb", 1);
-	if (record)
-	{
-		stacks->operations.rb++;
-		stacks->operations.total++;
-	}
+	stacks->operations.rb++;
+	stacks->operations.total++;
 }
 
-void	rr(t_stacks *stacks, int record, int print)
+void	rr(t_stacks *stacks, int print)
 {
-	ra(stacks, 0, 0);
-	rb(stacks, 0, 0);
+	rotate(&stacks->a);
+	rotate(&stacks->b);
 	if (print)
 		ft_putendl_fd("rr", 1);
-	if (record)
-	{
-		stacks->operations.rr++;
-		stacks->operations.total++;
-	}
+	stacks->operations.rr++;
+	stacks->operations.total++;
 }

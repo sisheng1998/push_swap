@@ -6,7 +6,7 @@
 /*   By: siooi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 12:15:17 by siooi             #+#    #+#             */
-/*   Updated: 2026/09/20 19:38:17 by siooi            ###   ########.fr       */
+/*   Updated: 2026/09/27 19:20:34 by siooi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ int	main(int argc, char **argv)
 	init_flags(&flags);
 	init_stacks(&stacks);
 	parse_args(args, &flags, &stacks);
+	sort_stacks(&stacks, flags, 1);
+	printf("Stack A:\n");
 	ft_lstiter(stacks.a, print_stack);
+	printf("Stack B:\n");
+	ft_lstiter(stacks.b, print_stack);
 	free_args(args);
 	free_stacks(&stacks);
 	return (0);
