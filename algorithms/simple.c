@@ -12,40 +12,26 @@
 
 #include "push_swap.h"
 
-static void	push_a_to_b(t_stacks *stacks, int print)
+static void	push_cheapest(t_stacks *stacks, int to_b, int print)
 {
-	t_list	*cheapest;
+	t_move	move;
 
-	cheapest = get_cheapest_a_to_b(stacks);
-	rotate_for_push_b(stacks, cheapest, print);
-	pb(stacks, print);
-}
-
-static void	push_b_to_a(t_stacks *stacks, int print)
-{
-	t_list	*cheapest;
-
-	cheapest = get_cheapest_b_to_a(stacks);
-	rotate_for_push_a(stacks, cheapest, print);
-	pa(stacks, print);
+	move = get_cheapest_move(stacks, to_b);
+	apply_move(stacks, &move, print);
+	if (to_b)
+		pb(stacks, print);
+	else
+		pa(stacks, print);
 }
 
 static void	final_alignment(t_stacks *stacks, int print)
 {
-	t_list	*min_node;
-	int		min_pos;
-	int		size;
+	t_move	move;
 
-	min_node = get_min_node(stacks->a);
-	size = ft_lstsize(stacks->a);
-	while (stacks->a != min_node)
-	{
-		min_pos = get_target_position(stacks->a, min_node);
-		if (min_pos <= size / 2)
-			ra(stacks, print);
-		else
-			rra(stacks, print);
-	}
+	move.node = get_min_node(stacks->a);
+	move.cost_a = get_rotation_cost(stacks->a, move.node);
+	move.cost_b = 0;
+	apply_move(stacks, &move, print);
 }
 
 void	insertion_sort(t_stacks *stacks, int print)
@@ -57,9 +43,9 @@ void	insertion_sort(t_stacks *stacks, int print)
 	if (ft_lstsize(stacks->a) > 3)
 		pb(stacks, print);
 	while (ft_lstsize(stacks->a) > 3)
-		push_a_to_b(stacks, print);
+		push_cheapest(stacks, 1, print);
 	sort_three(stacks, print);
 	while (ft_lstsize(stacks->b) > 0)
-		push_b_to_a(stacks, print);
+		push_cheapest(stacks, 0, print);
 	final_alignment(stacks, print);
 }

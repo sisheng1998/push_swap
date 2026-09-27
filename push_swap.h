@@ -62,6 +62,14 @@ typedef struct s_stacks
 	t_operations	operations;
 }	t_stacks;
 
+typedef struct s_move
+{
+	t_list	*node;
+	int		cost_a;
+	int		cost_b;
+	int		total;
+}	t_move;
+
 // Input Handling
 t_mode	get_mode(char *str);
 char	**build_args(char **argv);
@@ -86,12 +94,8 @@ t_list	*get_min_node(t_list *stack);
 // Algorithms - Simple
 void	insertion_sort(t_stacks *stacks, int print);
 int		get_rotation_cost(t_list *stack, t_list *target);
-int		get_total_cost(t_list *stack, t_list *target_stack,
-			t_list *current, t_list *target);
-t_list	*get_cheapest_a_to_b(t_stacks *stacks);
-t_list	*get_cheapest_b_to_a(t_stacks *stacks);
-void	rotate_for_push_b(t_stacks *stacks, t_list *cheapest, int print);
-void	rotate_for_push_a(t_stacks *stacks, t_list *cheapest, int print);
+t_move	get_cheapest_move(t_stacks *stacks, int to_b);
+void	apply_move(t_stacks *stacks, t_move *move, int print);
 
 // Operations
 void	sa(t_stacks *stacks, int print);

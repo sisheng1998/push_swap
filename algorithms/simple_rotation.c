@@ -48,30 +48,9 @@ static void	rotate_single(t_stacks *stacks, int *cost, char stack, int print)
 	}
 }
 
-void	rotate_for_push_b(t_stacks *stacks, t_list *cheapest, int print)
+void	apply_move(t_stacks *stacks, t_move *move, int print)
 {
-	t_list	*target;
-	int		cost_a;
-	int		cost_b;
-
-	target = get_smaller_target(stacks->b, cheapest->index);
-	cost_a = get_rotation_cost(stacks->a, cheapest);
-	cost_b = get_rotation_cost(stacks->b, target);
-	rotate_both(stacks, &cost_a, &cost_b, print);
-	rotate_single(stacks, &cost_a, 'a', print);
-	rotate_single(stacks, &cost_b, 'b', print);
-}
-
-void	rotate_for_push_a(t_stacks *stacks, t_list *cheapest, int print)
-{
-	t_list	*target;
-	int		cost_a;
-	int		cost_b;
-
-	target = get_larger_target(stacks->a, cheapest->index);
-	cost_a = get_rotation_cost(stacks->a, target);
-	cost_b = get_rotation_cost(stacks->b, cheapest);
-	rotate_both(stacks, &cost_a, &cost_b, print);
-	rotate_single(stacks, &cost_a, 'a', print);
-	rotate_single(stacks, &cost_b, 'b', print);
+	rotate_both(stacks, &move->cost_a, &move->cost_b, print);
+	rotate_single(stacks, &move->cost_a, 'a', print);
+	rotate_single(stacks, &move->cost_b, 'b', print);
 }

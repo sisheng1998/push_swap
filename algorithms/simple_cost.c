@@ -31,73 +31,59 @@ static int	ft_abs(int nbr)
 	return (nbr);
 }
 
-int	get_total_cost(t_list *stack, t_list *target_stack,
-			t_list *current, t_list *target)
+static int	get_total_cost(int cost_a, int cost_b)
 {
-	int	cost_stack;
-	int	cost_target;
-	int	abs_cost_stack;
-	int	abs_cost_target;
+	int	abs_a;
+	int	abs_b;
 
-	cost_stack = get_rotation_cost(stack, current);
-	cost_target = get_rotation_cost(target_stack, target);
-	abs_cost_stack = ft_abs(cost_stack);
-	abs_cost_target = ft_abs(cost_target);
-	if ((cost_stack >= 0 && cost_target >= 0)
-		|| (cost_stack < 0 && cost_target < 0))
+	abs_a = ft_abs(cost_a);
+	abs_b = ft_abs(cost_b);
+	if ((cost_a >= 0) == (cost_b >= 0))
 	{
-		if (abs_cost_stack > abs_cost_target)
-			return (abs_cost_stack);
-		return (abs_cost_target);
+		if (abs_a > abs_b)
+			return (abs_a);
+		return (abs_b);
 	}
-	return (abs_cost_stack + abs_cost_target);
+	return (abs_a + abs_b);
 }
 
-t_list	*get_cheapest_a_to_b(t_stacks *stacks)
+static t_move	get_move(t_stacks *stacks, t_list *node, int to_b)
 {
-	t_list	*current;
-	t_list	*cheapest;
-	t_list	*target;
-	int		current_cost;
-	int		cheapest_cost;
+	t_move	move;
 
-	current = stacks->a;
-	cheapest = stacks->a;
-	cheapest_cost = 0;
-	while (current)
+	move.node = node;
+	if (to_b)
 	{
-		target = get_smaller_target(stacks->b, current->index);
-		current_cost = get_total_cost(stacks->a, stacks->b, current, target);
-		if (current == stacks->a || current_cost < cheapest_cost)
-		{
-			cheapest_cost = current_cost;
-			cheapest = current;
-		}
-		current = current->next;
+		move.cost_a = get_rotation_cost(stacks->a, node);
+		move.cost_b = get_rotation_cost(stacks->b,
+				get_smaller_target(stacks->b, node->index));
 	}
-	return (cheapest);
+	else
+	{
+		move.cost_a = get_rotation_cost(stacks->a,
+				get_larger_target(stacks->a, node->index));
+		move.cost_b = get_rotation_cost(stacks->b, node);
+	}
+	move.total = get_total_cost(move.cost_a, move.cost_b);
+	return (move);
 }
 
-t_list	*get_cheapest_b_to_a(t_stacks *stacks)
+t_move	get_cheapest_move(t_stacks *stacks, int to_b)
 {
 	t_list	*current;
-	t_list	*cheapest;
-	t_list	*target;
-	int		current_cost;
-	int		cheapest_cost;
+	t_move	cheapest;
+	t_move	move;
 
 	current = stacks->b;
-	cheapest = stacks->b;
-	cheapest_cost = 0;
+	if (to_b)
+		current = stacks->a;
+	cheapest = get_move(stacks, current, to_b);
+	current = current->next;
 	while (current)
 	{
-		target = get_larger_target(stacks->a, current->index);
-		current_cost = get_total_cost(stacks->b, stacks->a, current, target);
-		if (current == stacks->b || current_cost < cheapest_cost)
-		{
-			cheapest_cost = current_cost;
-			cheapest = current;
-		}
+		move = get_move(stacks, current, to_b);
+		if (move.total < cheapest.total)
+			cheapest = move;
 		current = current->next;
 	}
 	return (cheapest);
