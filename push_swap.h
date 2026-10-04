@@ -6,7 +6,7 @@
 /*   By: siooi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 12:13:44 by siooi             #+#    #+#             */
-/*   Updated: 2026/09/27 19:04:29 by siooi            ###   ########.fr       */
+/*   Updated: 2026/10/04 13:52:42 by siooi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ typedef struct s_flags
 	t_mode	mode;
 	int		bench;
 }	t_flags;
+
+typedef struct s_bench
+{
+	float	disorder;
+	char	*strategy;
+	char	*complexity;
+}	t_bench;
 
 typedef struct s_list
 {
@@ -81,8 +88,12 @@ void	assign_index(t_list *stack);
 void	free_args(char **args);
 void	free_stacks(t_stacks *stacks);
 
+// Benchmark
+void	init_bench(t_bench *bench, t_flags flags, t_list *stack);
+void	print_bench(t_bench bench, t_operations operations);
+
 // Algorithms
-void	sort_stacks(t_stacks *stacks, t_flags flags, int print);
+void	sort_stacks(t_stacks *stacks, t_bench *bench, t_flags flags, int print);
 int		is_sorted(t_list *stack);
 void	fixed_sort(t_stacks *stacks, int print);
 void	sort_three(t_stacks *stacks, int print);
@@ -93,9 +104,14 @@ t_list	*get_min_node(t_list *stack);
 
 // Algorithms - Simple
 void	insertion_sort(t_stacks *stacks, int print);
+void	push_cheapest(t_stacks *stacks, int to_b, int print);
+void	final_alignment(t_stacks *stacks, int print);
 int		get_rotation_cost(t_list *stack, t_list *target);
 t_move	get_cheapest_move(t_stacks *stacks, int to_b);
 void	apply_move(t_stacks *stacks, t_move *move, int print);
+
+// Algorithms - Medium
+void	chunk_sort(t_stacks *stacks, int print);
 
 // Operations
 void	sa(t_stacks *stacks, int print);
@@ -118,7 +134,9 @@ void	ft_lstiter(t_list *lst, void (*f)(int, int));
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(int value);
 int		ft_lstsize(t_list *lst);
+void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 char	**ft_split(char const *s, char c);
 int		ft_strcmp(const char *s1, const char *s2);

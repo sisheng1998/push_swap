@@ -6,7 +6,7 @@
 /*   By: siooi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 12:15:17 by siooi             #+#    #+#             */
-/*   Updated: 2026/09/27 19:20:34 by siooi            ###   ########.fr       */
+/*   Updated: 2026/10/03 16:20:22 by siooi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char **argv)
 {
 	char		**args;
 	t_flags		flags;
+	t_bench		bench;
 	t_stacks	stacks;
 
 	if (argc == 1)
@@ -31,7 +32,10 @@ int	main(int argc, char **argv)
 	init_flags(&flags);
 	init_stacks(&stacks);
 	parse_args(args, &flags, &stacks);
-	sort_stacks(&stacks, flags, 1);
+	init_bench(&bench, flags, stacks.a);
+	sort_stacks(&stacks, &bench, flags, 1);
+	if (flags.bench)
+		print_bench(bench, stacks.operations);
 	printf("Stack A:\n");
 	ft_lstiter(stacks.a, print_stack);
 	printf("Stack B:\n");

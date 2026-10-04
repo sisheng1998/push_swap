@@ -6,7 +6,7 @@
 #    By: siooi <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/19 15:20:12 by siooi             #+#    #+#              #
-#    Updated: 2026/09/27 18:27:52 by siooi            ###   ########.fr        #
+#    Updated: 2026/10/03 16:29:38 by siooi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,17 @@ RM	= rm -f
 
 MAIN	= main
 
+INPUT	= $(addprefix input/, \
+		flags \
+		parse \
+		check \
+		stacks \
+		index)
+
+BENCHMARK	= $(addprefix benchmark/, \
+		init \
+		print)
+
 ALGORITHMS	= $(addprefix algorithms/, \
 		sort \
 		sort_utils \
@@ -27,14 +38,8 @@ ALGORITHMS	= $(addprefix algorithms/, \
 		simple \
 		simple_utils \
 		simple_cost \
-		simple_rotation)
-
-INPUT	= $(addprefix input/, \
-		flags \
-		parse \
-		check \
-		stacks \
-		index)
+		simple_rotation \
+		medium)
 
 OPERATIONS	= $(addprefix operations/, \
 		swap \
@@ -50,7 +55,9 @@ LIBFT	= $(addprefix libft/, \
 	  	ft_lstlast \
 	  	ft_lstnew \
 	  	ft_lstsize \
+		ft_putchar_fd \
 	  	ft_putendl_fd \
+		ft_putnbr_fd \
 	  	ft_putstr_fd \
 	  	ft_split \
 	  	ft_strcmp \
@@ -58,7 +65,7 @@ LIBFT	= $(addprefix libft/, \
 	  	ft_strjoin \
 	  	ft_strlen)
 
-SRCS	= $(addsuffix .c, $(MAIN) $(ALGORITHMS) $(INPUT) $(OPERATIONS) $(LIBFT))
+SRCS	= $(addsuffix .c, $(MAIN) $(INPUT) $(BENCHMARK) $(ALGORITHMS) $(OPERATIONS) $(LIBFT))
 OBJS	= $(SRCS:.c=.o)
 
 %.o	: %.c $(HEADER)

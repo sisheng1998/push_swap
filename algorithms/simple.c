@@ -6,13 +6,13 @@
 /*   By: siooi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 15:07:28 by siooi             #+#    #+#             */
-/*   Updated: 2026/09/27 18:53:58 by siooi            ###   ########.fr       */
+/*   Updated: 2026/10/03 17:46:17 by siooi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push_cheapest(t_stacks *stacks, int to_b, int print)
+void	push_cheapest(t_stacks *stacks, int to_b, int print)
 {
 	t_move	move;
 
@@ -24,7 +24,7 @@ static void	push_cheapest(t_stacks *stacks, int to_b, int print)
 		pa(stacks, print);
 }
 
-static void	final_alignment(t_stacks *stacks, int print)
+void	final_alignment(t_stacks *stacks, int print)
 {
 	t_move	move;
 
@@ -36,12 +36,15 @@ static void	final_alignment(t_stacks *stacks, int print)
 
 void	insertion_sort(t_stacks *stacks, int print)
 {
-	if (!stacks)
+	if (!stacks || is_sorted(stacks->a))
 		return ;
-	if (ft_lstsize(stacks->a) > 3)
-		pb(stacks, print);
-	if (ft_lstsize(stacks->a) > 3)
-		pb(stacks, print);
+	if (ft_lstsize(stacks->a) <= 5)
+	{
+		fixed_sort(stacks, print);
+		return ;
+	}
+	pb(stacks, print);
+	pb(stacks, print);
 	while (ft_lstsize(stacks->a) > 3)
 		push_cheapest(stacks, 1, print);
 	sort_three(stacks, print);
