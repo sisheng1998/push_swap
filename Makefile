@@ -6,12 +6,15 @@
 #    By: siooi <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/19 15:20:12 by siooi             #+#    #+#              #
-#    Updated: 2026/10/03 16:29:38 by siooi            ###   ########.fr        #
+#    Updated: 2026/10/04 16:48:27 by siooi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= push_swap
 HEADER	= push_swap.h
+
+BONUS_NAME	= checker
+BONUS_HEADER	= checker.h
 
 CC	= cc
 CFLAGS	= -Wall -Wextra -Werror
@@ -65,10 +68,21 @@ LIBFT	= $(addprefix libft/, \
 	  	ft_strjoin \
 	  	ft_strlen)
 
+BONUS	= $(addprefix bonus/, \
+		main \
+		input) \
+	$(addprefix algorithms/, sort_utils)
+
 SRCS	= $(addsuffix .c, $(MAIN) $(INPUT) $(BENCHMARK) $(ALGORITHMS) $(OPERATIONS) $(LIBFT))
 OBJS	= $(SRCS:.c=.o)
 
+BONUS_SRCS	= $(addsuffix .c, $(BONUS) $(INPUT) $(OPERATIONS) $(LIBFT))
+BONUS_OBJS	= $(BONUS_SRCS:.c=.o)
+
 %.o	: %.c $(HEADER)
+	$(CC) $(CFLAGS) -I. -c $< -o $@
+
+bonus/%.o	: bonus/%.c $(BONUS_HEADER) $(HEADER)
 	$(CC) $(CFLAGS) -I. -c $< -o $@
 
 all	: $(NAME)
@@ -76,11 +90,14 @@ all	: $(NAME)
 $(NAME)	: $(OBJS)
 	$(CC) $(CFLAGS) -fsanitize=address -g $(OBJS) -o $(NAME)
 
+bonus	: $(BONUS_OBJS)
+	$(CC) $(CFLAGS) -fsanitize=address -g $(BONUS_OBJS) -o $(BONUS_NAME)
+
 clean	:
-	${RM} ${OBJS}
+	${RM} ${OBJS} ${BONUS_OBJS}
 
 fclean	: clean
-	${RM} $(NAME)
+	${RM} $(NAME) $(BONUS_NAME)
 
 re	: fclean all
 

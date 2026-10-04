@@ -6,13 +6,13 @@
 /*   By: siooi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 13:46:24 by siooi             #+#    #+#             */
-/*   Updated: 2026/09/20 13:50:45 by siooi            ###   ########.fr       */
+/*   Updated: 2026/10/04 16:26:13 by siooi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	print_error(char **args)
+void	print_error(char **args)
 {
 	if (args)
 		free_args(args);
@@ -27,7 +27,7 @@ static int	check_exist(char **args, int is_exist)
 	return (1);
 }
 
-static long	check_number(char **args, char *str)
+long	check_number(char **args, char *str)
 {
 	int		i;
 	long	result;
@@ -51,7 +51,7 @@ static long	check_number(char **args, char *str)
 	return (result);
 }
 
-static void	check_duplicate(char **args, int idx, long num)
+void	check_duplicate(char **args, int idx, long num)
 {
 	int		i;
 	t_mode	mode;

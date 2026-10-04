@@ -6,7 +6,7 @@
 /*   By: siooi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 12:13:44 by siooi             #+#    #+#             */
-/*   Updated: 2026/10/04 13:52:42 by siooi            ###   ########.fr       */
+/*   Updated: 2026/10/04 16:40:38 by siooi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ typedef struct s_move
 // Input Handling
 t_mode	get_mode(char *str);
 char	**build_args(char **argv);
+void	print_error(char **args);
+long	check_number(char **args, char *str);
+void	check_duplicate(char **args, int idx, long num);
 void	check_args(char **args);
 void	init_flags(t_flags *flags);
 void	init_stacks(t_stacks *stacks);
