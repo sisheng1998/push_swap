@@ -6,7 +6,7 @@
 /*   By: siooi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 15:57:29 by siooi             #+#    #+#             */
-/*   Updated: 2026/10/04 18:03:05 by siooi            ###   ########.fr       */
+/*   Updated: 2026/10/10 20:04:48 by siooi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,48 @@ void	parse_args_bonus(char **args, t_stacks *stacks)
 	assign_index(stacks->a);
 }
 
+static char	*ft_read(int fd, char *text)
+{
+	char	*buffer;
+	ssize_t	bytes_read;
+	char	*new_text;
+
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return (NULL);
+	bytes_read = 1;
+	while (bytes_read > 0)
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+			return (free(buffer), free(text), NULL);
+		buffer[bytes_read] = '\0';
+		new_text = ft_strjoin(text, buffer);
+		if (!new_text)
+			return (free(buffer), free(text), NULL);
+		free(text);
+		text = new_text;
+	}
+	free(buffer);
+	return (text);
+}
+
 char	**build_operations(int fd)
 {
-	(void)fd;
-	return (NULL);
-}
+	char	**operations;
+	char	*text;
 
-void	check_operations(char **args, char **operations)
-{
-	(void)args;
-	(void)operations;
-}
-
-void	execute_operations(t_stacks *stacks, char **operations)
-{
-	(void)stacks;
-	(void)operations;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	text = ft_strdup("");
+	text = ft_read(fd, text);
+	if (!text || text[0] == '\0')
+	{
+		free(text);
+		text = NULL;
+		return (NULL);
+	}
+	operations = ft_split(text, '\n');
+	free(text);
+	return (operations);
 }

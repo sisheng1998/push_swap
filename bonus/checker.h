@@ -6,7 +6,7 @@
 /*   By: siooi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 15:15:43 by siooi             #+#    #+#             */
-/*   Updated: 2026/10/04 17:44:51 by siooi            ###   ########.fr       */
+/*   Updated: 2026/10/10 18:59:56 by siooi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define CHECKER_H
 
 # include "../push_swap.h"
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 void	check_args_bonus(char **args);
 void	parse_args_bonus(char **args, t_stacks *stacks);

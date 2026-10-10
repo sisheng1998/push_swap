@@ -6,7 +6,7 @@
 #    By: siooi <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/19 15:20:12 by siooi             #+#    #+#              #
-#    Updated: 2026/10/04 16:48:27 by siooi            ###   ########.fr        #
+#    Updated: 2026/10/10 19:16:48 by siooi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,8 @@ LIBFT	= $(addprefix libft/, \
 
 BONUS	= $(addprefix bonus/, \
 		main \
-		input) \
+		input \
+		operations) \
 	$(addprefix algorithms/, sort_utils)
 
 SRCS	= $(addsuffix .c, $(MAIN) $(INPUT) $(BENCHMARK) $(ALGORITHMS) $(OPERATIONS) $(LIBFT))
