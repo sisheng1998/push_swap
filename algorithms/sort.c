@@ -6,7 +6,7 @@
 /*   By: siooi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 11:13:18 by siooi             #+#    #+#             */
-/*   Updated: 2026/10/04 11:57:56 by siooi            ###   ########.fr       */
+/*   Updated: 2026/10/11 14:49:55 by siooi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,4 @@ void	sort_stacks(t_stacks *stacks, t_bench *bench, t_flags flags, int print)
 		chunk_sort(stacks, print);
 	else
 		adaptive_sort(stacks, bench, print);
-	if (is_sorted(stacks->a))
-		write(1, "Sorted!\n", 8);
 }

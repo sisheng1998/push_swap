@@ -6,17 +6,11 @@
 /*   By: siooi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 12:15:17 by siooi             #+#    #+#             */
-/*   Updated: 2026/10/03 16:20:22 by siooi            ###   ########.fr       */
+/*   Updated: 2026/10/11 14:49:32 by siooi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
-
-static void	print_stack(int value, int index)
-{
-	printf("Value: %i, Index: %i\n", value, index);
-}
 
 int	main(int argc, char **argv)
 {
@@ -36,10 +30,6 @@ int	main(int argc, char **argv)
 	sort_stacks(&stacks, &bench, flags, 1);
 	if (flags.bench)
 		print_bench(bench, stacks.operations);
-	printf("Stack A:\n");
-	ft_lstiter(stacks.a, print_stack);
-	printf("Stack B:\n");
-	ft_lstiter(stacks.b, print_stack);
 	free_args(args);
 	free_stacks(&stacks);
 	return (0);

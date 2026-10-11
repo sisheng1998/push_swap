@@ -6,7 +6,7 @@
 /*   By: siooi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 12:13:44 by siooi             #+#    #+#             */
-/*   Updated: 2026/10/04 16:40:38 by siooi            ###   ########.fr       */
+/*   Updated: 2026/10/11 14:51:08 by siooi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ void	rrr(t_stacks *stacks, int print);
 long	ft_atol(const char *nptr);
 int		ft_isdigit(int c);
 void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstiter(t_list *lst, void (*f)(int, int));
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(int value);
 int		ft_lstsize(t_list *lst);

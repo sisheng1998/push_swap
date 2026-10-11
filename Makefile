@@ -6,7 +6,7 @@
 #    By: siooi <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/19 15:20:12 by siooi             #+#    #+#              #
-#    Updated: 2026/10/10 19:16:48 by siooi            ###   ########.fr        #
+#    Updated: 2026/10/11 14:52:55 by siooi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,6 @@ LIBFT	= $(addprefix libft/, \
 		ft_atol \
 		ft_isdigit \
 	  	ft_lstadd_back \
-	  	ft_lstiter \
 	  	ft_lstlast \
 	  	ft_lstnew \
 	  	ft_lstsize \
@@ -89,10 +88,10 @@ bonus/%.o	: bonus/%.c $(BONUS_HEADER) $(HEADER)
 all	: $(NAME)
 
 $(NAME)	: $(OBJS)
-	$(CC) $(CFLAGS) -fsanitize=address -g $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 bonus	: $(BONUS_OBJS)
-	$(CC) $(CFLAGS) -fsanitize=address -g $(BONUS_OBJS) -o $(BONUS_NAME)
+	$(CC) $(CFLAGS) $(BONUS_OBJS) -o $(BONUS_NAME)
 
 clean	:
 	${RM} ${OBJS} ${BONUS_OBJS}
