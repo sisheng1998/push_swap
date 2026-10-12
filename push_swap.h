@@ -116,6 +116,9 @@ void	apply_move(t_stacks *stacks, t_move *move, int print);
 // Algorithms - Medium
 void	chunk_sort(t_stacks *stacks, int print);
 
+// Algorithms - Complex
+void	quick_sort(t_stacks *stacks, int print);
+
 // Operations
 void	sa(t_stacks *stacks, int print);
 void	sb(t_stacks *stacks, int print);

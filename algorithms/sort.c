@@ -26,7 +26,7 @@ static void	adaptive_sort(t_stacks *stacks, t_bench *bench, int print)
 	}
 	else
 	{
-		chunk_sort(stacks, print);
+		quick_sort(stacks, print);
 		bench->complexity = "O(n log n)";
 	}
 }
@@ -38,7 +38,7 @@ void	sort_stacks(t_stacks *stacks, t_bench *bench, t_flags flags, int print)
 	else if (flags.mode == MEDIUM)
 		chunk_sort(stacks, print);
 	else if (flags.mode == COMPLEX)
-		chunk_sort(stacks, print);
+		quick_sort(stacks, print);
 	else
 		adaptive_sort(stacks, bench, print);
 }

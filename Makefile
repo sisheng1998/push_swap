@@ -42,7 +42,8 @@ ALGORITHMS	= $(addprefix algorithms/, \
 		simple_utils \
 		simple_cost \
 		simple_rotation \
-		medium)
+		medium \
+		complex)
 
 OPERATIONS	= $(addprefix operations/, \
 		swap \
