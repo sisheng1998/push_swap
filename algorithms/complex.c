@@ -19,8 +19,8 @@ static int	find_pivot(t_list *ab)
 
 static void	push_to_b(t_stacks *stacks, int print)
 {
-	int	p1;
-	int	p2;
+	int		p1;
+	int		p2;
 	t_list	*lst;
 
 	p1 = find_pivot(stacks->a);
@@ -45,59 +45,10 @@ void	quick_sort(t_stacks *stacks, int print)
 		fixed_sort(stacks, print);
 		return ;
 	}
-	while (ft_lstsize(stacks->a) > 3)
+	while (ft_lstsize(stacks->a) > 5)
 		push_to_b(stacks, print);
 	fixed_sort(stacks, print);
 	while (ft_lstsize(stacks->b))
 		push_cheapest(stacks, 0, print);
 	final_alignment(stacks, print);
 }
-
-/*
-t_move	*find_max(t_list *b)
-{
-	int	i;
-	t_move	*max;
-	
-	if (!b)
-		return (NULL);
-	max->node = b;
-	b = b->next;
-	i = 0;
-	while (b)
-	{
-		if (b->index > max->node->index)
-		{
-			max->node = b;
-			max->cost_b = i + 1;
-		}
-		b = b->next;
-		i++;
-	}
-	return (output);
-}*/
-
-/*
-void	push_max_to_a(t_stacks *stacks, int print)
-{
-	t_move	*max;
-	
-	max = find_max(stacks->b);*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
