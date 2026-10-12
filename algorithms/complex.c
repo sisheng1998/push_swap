@@ -24,7 +24,7 @@ static void	push_to_b(t_stacks *stacks, int print)
 	t_list	*lst;
 
 	p1 = find_pivot(stacks->a);
-	p2 = p1 * 2;
+	p2 = ft_lstsize(stacks->a) - p1;
 	lst = stacks->a;
 	if (lst->index < p2)
 	{
