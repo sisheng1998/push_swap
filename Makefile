@@ -14,7 +14,7 @@ NAME	= push_swap
 HEADER	= push_swap.h
 
 BONUS_NAME	= checker
-BONUS_HEADER	= checker.h
+BONUS_HEADER	= bonus/checker.h
 
 CC	= cc
 CFLAGS	= -Wall -Wextra -Werror
@@ -80,10 +80,10 @@ OBJS	= $(SRCS:.c=.o)
 BONUS_SRCS	= $(addsuffix .c, $(BONUS) $(INPUT) $(OPERATIONS) $(LIBFT))
 BONUS_OBJS	= $(BONUS_SRCS:.c=.o)
 
-%.o	: %.c $(HEADER)
+bonus/%.o	: bonus/%.c $(BONUS_HEADER) $(HEADER)
 	$(CC) $(CFLAGS) -I. -c $< -o $@
 
-bonus/%.o	: bonus/%.c $(BONUS_HEADER) $(HEADER)
+%.o	: %.c $(HEADER)
 	$(CC) $(CFLAGS) -I. -c $< -o $@
 
 all	: $(NAME)
@@ -91,7 +91,9 @@ all	: $(NAME)
 $(NAME)	: $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-bonus	: $(BONUS_OBJS)
+bonus	: $(BONUS_NAME)
+
+$(BONUS_NAME)	: $(BONUS_OBJS)
 	$(CC) $(CFLAGS) $(BONUS_OBJS) -o $(BONUS_NAME)
 
 clean	:
