@@ -12,9 +12,15 @@
 
 #include "push_swap.h"
 
-static int	find_pivot(t_list *ab)
+static void	find_pivot(t_list *a, t_list *b, int *p1, int *p2)
 {
-	return (0.35 * ft_lstsize(ab));
+	int		size_a;
+	int		size_b;
+
+	size_a = ft_lstsize(a);
+	size_b = ft_lstsize(b);
+	*p1 = size_b + (size_a * 0.35);
+	*p2 = size_b + (size_a * 0.65);
 }
 
 static void	push_to_b(t_stacks *stacks, int print)
@@ -23,8 +29,7 @@ static void	push_to_b(t_stacks *stacks, int print)
 	int		p2;
 	t_list	*lst;
 
-	p1 = find_pivot(stacks->a);
-	p2 = ft_lstsize(stacks->a) - p1;
+	find_pivot(stacks->a, stacks->b, &p1, &p2);
 	lst = stacks->a;
 	if (lst->index < p2)
 	{
