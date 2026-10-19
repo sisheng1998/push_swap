@@ -27,14 +27,12 @@ static void	push_to_b(t_stacks *stacks, int print)
 {
 	int		p1;
 	int		p2;
-	t_list	*lst;
 
 	find_pivot(stacks->a, stacks->b, &p1, &p2);
-	lst = stacks->a;
-	if (lst->index < p2)
+	if (stacks->a->index < p2)
 	{
 		pb(stacks, print);
-		if (lst->index < p1 && ft_lstsize(stacks->b) >= 2)
+		if (stacks->b->index < p1 && ft_lstsize(stacks->b) >= 2)
 			rb(stacks, print);
 	}
 	else
