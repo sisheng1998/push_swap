@@ -98,6 +98,7 @@ Space usage is O(n) for every strategy (the two linked-list stacks).
 - [Push Swap Tutorial (Simple)](https://medium.com/@ayogun/push-swap-c1f5d2d41e97)
 - [Push Swap Tutorial (Medium)](https://medium.com/@brakebein42/k-distribution-sort-applied-to-the-push-swap-problem-ae2d96d68376)
 - [Push Swap Tester](https://github.com/sisheng1998/push_swap_tester)
+- [Push Swap Visualiser](https://github.com/Niimphu/push_swap_visualiser)
 - [Detailed Explanation](https://github.com/sisheng1998/push_swap/tree/main/explanation)
 
 **AI usage:** AI was used to help draft this README and to review explanations of the algorithms.
