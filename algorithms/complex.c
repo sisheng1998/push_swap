@@ -34,7 +34,7 @@ static void	push_to_b(t_stacks *stacks, int print)
 	if (lst->index < p2)
 	{
 		pb(stacks, print);
-		if (lst->index < p1)
+		if (lst->index < p1 && ft_lstsize(stacks->b) >= 2)
 			rb(stacks, print);
 	}
 	else
